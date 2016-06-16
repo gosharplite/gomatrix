@@ -11,12 +11,18 @@ import (
 
 var screen tcell.Screen
 
+//var characters = []rune{
+//        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+//        'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+//        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+//        'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+//        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+//}
+
 var characters = []rune{
-	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-	'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-	'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-	'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+	'上', '海', '卓', '易', '科', '技', '台', '北', '研', '究', '院',
+	'D', 'r', 'o', 'i', 'T', 'a', 'i', 'p', 'e', 'i', '1', '0', '1',
+	'S', 'h', 'a', 'n', 'g', 'h', 'a', 'i', 'B', 'e', 'i', 'j', 'i', 'n', 'g',
 }
 
 var streamDisplaysByColumn = make(map[int]*StreamDisplay)
@@ -27,7 +33,7 @@ type sizes struct {
 }
 
 var curSizes sizes
-var curStreamsPerStreamDisplay = 0
+
 var sizesUpdateCh = make(chan sizes)
 
 func setSizes(width int, height int) {
@@ -36,7 +42,6 @@ func setSizes(width int, height int) {
 		height: height,
 	}
 	curSizes = s
-	curStreamsPerStreamDisplay = 1 + height/10
 	sizesUpdateCh <- s
 }
 
